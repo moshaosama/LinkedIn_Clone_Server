@@ -1,8 +1,15 @@
 package com.example.Linkedin_Clone.Post;
 
+import java.util.List;
+
+import com.example.Linkedin_Clone.Comments.Comments;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,13 +21,15 @@ public class Post {
     @NotEmpty
     @NotNull
     private String Title;
-    private String Comment;
     private Integer Likes = 0;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Comments> comments;
 
     Post(String Title, Integer Likes, String Comment) {
         this.Title = Title;
         this.Likes = Likes;
-        this.Comment = Comment;
     }
 
     Post() {
@@ -40,14 +49,6 @@ public class Post {
 
     public void setTitle(String Title) {
         this.Title = Title;
-    }
-
-    public String getComment() {
-        return this.Comment;
-    }
-
-    public void setComment(String Comment) {
-        this.Comment = Comment;
     }
 
     public void setLike(Integer like) {
