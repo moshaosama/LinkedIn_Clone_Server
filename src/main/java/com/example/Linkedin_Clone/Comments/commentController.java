@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class commentController {
-    private final commentRepository commentRepository;
+    private final commentService commentService;
 
     @Autowired
-    commentController(commentRepository commentRepository) {
-        this.commentRepository = commentRepository;
+    commentController(commentService commentService) {
+        this.commentService = commentService;
     }
 
     @CrossOrigin("*")
     @PostMapping("/createComment")
     public Comments createComment(@RequestBody Comments comment) {
-        return this.commentRepository.save(comment);
+        return this.commentService.createComment(comment);
     }
 }

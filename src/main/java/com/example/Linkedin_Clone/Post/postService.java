@@ -35,4 +35,8 @@ public class postService {
         }
         return this.postRepository.save(post);
     }
+
+    public Post getpostById(Integer id) {
+        return this.postRepository.findById(id).orElse(null);
+    }
 }

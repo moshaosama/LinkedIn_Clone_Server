@@ -47,4 +47,10 @@ public class PostController {
     public void editPost(@PathVariable Integer id) {
         this.postService.editPost(id, 1);
     }
+
+    @CrossOrigin("*")
+    @GetMapping("/postById/{id}")
+    public Post getPostById(@PathVariable Integer id) {
+        return this.postService.getpostById(id);
+    }
 }
