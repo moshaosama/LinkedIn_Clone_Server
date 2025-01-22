@@ -50,6 +50,10 @@ public class Post {
         this.Comment = Comment;
     }
 
+    public void setLike(Integer like) {
+        this.Likes = like;
+    }
+
     public Integer getLikes() {
         return this.Likes;
     }
