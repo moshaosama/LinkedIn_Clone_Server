@@ -2,7 +2,7 @@ package com.example.Linkedin_Clone.Profile;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,27 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class profileController {
-    private final profileRepository profileRepository;
+    private final profileService profileService;
 
-    profileController(profileRepository profileRepository) {
-        this.profileRepository = profileRepository;
+    @Autowired
+    profileController(profileService profileService) {
+        this.profileService = profileService;
     }
 
     @CrossOrigin("*")
-    @PostMapping("/createAbout")
-    public ResponseEntity<?> createAbout(@RequestBody Profile profile) {
-        Profile newprofile = new Profile();
-        newprofile.setAbout(profile.getAbout());
-        if (this.profileRepository.findAll().size() == 1) {
-            return ResponseEntity.badRequest().body("you can't add anything to this profile");
-        } else {
-            return ResponseEntity.ok().body(this.profileRepository.save(newprofile));
-        }
+    @PostMapping("/CreateProfile")
+    public Profile createProfile(@RequestBody Profile profile) {
+        return this.profileService.createProfile(profile);
     }
 
     @CrossOrigin("*")
-    @GetMapping("/getAbout")
-    public List<Profile> getAbout() {
-        return this.profileRepository.findAll();
+    @GetMapping("/Profiles")
+    public List<Profile> getProfiles() {
+        return this.profileService.getProfiles();
     }
 }
