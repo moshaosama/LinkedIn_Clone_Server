@@ -5,22 +5,20 @@ import java.util.List;
 import com.example.Linkedin_Clone.About.About;
 import com.example.Linkedin_Clone.Education.Education;
 import com.example.Linkedin_Clone.Experience.Experience;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Profile {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private Integer id = 1;
+    private String Title;
     private String userName;
     private String Email;
     private String Password;
@@ -37,7 +35,8 @@ public class Profile {
     @JsonManagedReference
     private Education education;
 
-    Profile(String userName, String Email, String Password) {
+    Profile(String title, String userName, String Email, String Password) {
+        this.Title = title;
         this.userName = userName;
         this.Email = Email;
         this.Password = Password;
@@ -61,6 +60,15 @@ public class Profile {
     // Setter for userName
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getTitle() {
+        return this.Title;
+    }
+
+    // Setter for userName
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 
     // Getter for email

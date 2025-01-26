@@ -14,6 +14,11 @@ public class educationService {
     }
 
     public Education createEducation(Education education) {
-        return this.educationRepository.save(education);
+        if (this.educationRepository.findAll().size() == 0) {
+            return this.educationRepository.save(education);
+        } else {
+            this.educationRepository.deleteAll();
+            return this.educationRepository.save(education);
+        }
     }
 }

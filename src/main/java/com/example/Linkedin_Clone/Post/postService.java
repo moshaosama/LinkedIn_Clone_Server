@@ -26,14 +26,14 @@ public class postService {
         this.postRepository.deleteById(id);
     }
 
-    public Post editPost(Integer id, Integer newLike) {
+    public void editPost(Integer id, Integer newLike) {
         Post post = this.postRepository.findById(id).orElse(null);
         if (post.getLikes() == 0) {
             post.setLike(newLike);
         } else {
             post.setLike(0);
         }
-        return this.postRepository.save(post);
+        this.postRepository.save(post);
     }
 
     public Post getpostById(Integer id) {
