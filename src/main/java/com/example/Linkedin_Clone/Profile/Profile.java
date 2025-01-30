@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.Linkedin_Clone.About.About;
 import com.example.Linkedin_Clone.Education.Education;
 import com.example.Linkedin_Clone.Experience.Experience;
-
+import com.example.Linkedin_Clone.Language.Language;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -34,6 +34,9 @@ public class Profile {
     @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Education education;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Language> language;
 
     Profile(String title, String userName, String Email, String Password) {
         this.Title = title;
