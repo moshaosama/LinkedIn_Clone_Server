@@ -36,6 +36,7 @@ public class Profile {
     private Education education;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Language> language;
 
     Profile(String title, String userName, String Email, String Password) {

@@ -1,8 +1,8 @@
 package com.example.Linkedin_Clone.Language;
 
 import com.example.Linkedin_Clone.Profile.Profile;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,6 +19,7 @@ public class Language {
 
     @ManyToOne
     @JoinColumn(name = "profile_id")
+    @JsonBackReference
     private Profile profile;
 
     Language(String Language, String Proficiency) {
