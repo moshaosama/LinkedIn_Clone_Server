@@ -13,15 +13,16 @@ public class profileService {
     }
 
     public Profile createProfile(Profile profile) {
-        if (this.profileRepository.findAll().size() == 0) {
-            return this.profileRepository.save(profile);
-        } else {
-            this.profileRepository.deleteAll();
-            return this.profileRepository.save(profile);
-        }
+
+        return this.profileRepository.save(profile);
+
     }
 
     public List<Profile> getProfiles() {
         return this.profileRepository.findAll();
+    }
+
+    public Profile getProfileById(Integer id) {
+        return this.profileRepository.findById(id).orElse(null);
     }
 }

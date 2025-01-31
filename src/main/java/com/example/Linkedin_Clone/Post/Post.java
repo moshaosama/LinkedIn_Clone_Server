@@ -3,12 +3,16 @@ package com.example.Linkedin_Clone.Post;
 import java.util.List;
 
 import com.example.Linkedin_Clone.Comments.Comments;
+import com.example.Linkedin_Clone.Profile.Profile;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -26,6 +30,11 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Comments> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    @JsonBackReference
+    private Profile profile;
 
     Post(String Title, Integer Likes, String Comment) {
         this.Title = Title;

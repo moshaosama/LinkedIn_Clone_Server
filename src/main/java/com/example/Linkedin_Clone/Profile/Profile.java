@@ -6,10 +6,12 @@ import com.example.Linkedin_Clone.About.About;
 import com.example.Linkedin_Clone.Education.Education;
 import com.example.Linkedin_Clone.Experience.Experience;
 import com.example.Linkedin_Clone.Language.Language;
+import com.example.Linkedin_Clone.Post.Post;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -17,7 +19,8 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Profile {
     @Id
-    private Integer id = 1;
+    @GeneratedValue
+    private Integer id;
     private String Title;
     private String userName;
     private String Email;
@@ -38,6 +41,10 @@ public class Profile {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Language> language;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Post> post;
 
     Profile(String title, String userName, String Email, String Password) {
         this.Title = title;
