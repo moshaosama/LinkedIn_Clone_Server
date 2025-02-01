@@ -22,7 +22,7 @@ public class profileService {
         return this.profileRepository.findAll();
     }
 
-    public Profile getProfileById(Integer id) {
-        return this.profileRepository.findById(id).orElse(null);
+    public Profile[] getProfileById(Integer id) {
+        return this.profileRepository.findById(id).map(person -> new Profile[] { person }).orElse(null);
     }
 }

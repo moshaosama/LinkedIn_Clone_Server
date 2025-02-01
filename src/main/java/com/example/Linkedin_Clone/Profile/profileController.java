@@ -33,7 +33,7 @@ public class profileController {
 
     @CrossOrigin("*")
     @GetMapping("/profile/{id}")
-    public Profile getProfileById(@PathVariable Integer id) {
+    public Profile[] getProfileById(@PathVariable Integer id) {
         return this.profileService.getProfileById(id);
     }
 
