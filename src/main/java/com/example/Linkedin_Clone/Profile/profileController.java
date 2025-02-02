@@ -32,9 +32,21 @@ public class profileController {
     }
 
     @CrossOrigin("*")
+    @GetMapping("/profileArray/{id}")
+    public Profile[] getProfileByIdasArray(@PathVariable Integer id) {
+        return this.profileService.getProfileByIdAsArray(id);
+    }
+
+    @CrossOrigin("*")
     @GetMapping("/profile/{id}")
-    public Profile[] getProfileById(@PathVariable Integer id) {
+    public Profile getProfileById(@PathVariable Integer id) {
         return this.profileService.getProfileById(id);
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/profile/email/{email}")
+    public Profile getProfileByEmail(@PathVariable String email) {
+        return this.profileService.getProfileByEmail(email);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.Linkedin_Clone.Language;
 
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -7,24 +7,25 @@ import com.example.Linkedin_Clone.Education.Education;
 import com.example.Linkedin_Clone.Experience.Experience;
 import com.example.Linkedin_Clone.Language.Language;
 import com.example.Linkedin_Clone.Post.Post;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Profile {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String Title;
+
+    private String title;
     private String userName;
-    private String Email;
-    private String Password;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @JsonIgnore
+    private String password;
 
     @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -32,7 +33,7 @@ public class Profile {
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Experience> Experience;
+    private List<Experience> experience;
 
     @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -46,14 +47,14 @@ public class Profile {
     @JsonManagedReference
     private List<Post> post;
 
-    Profile(String title, String userName, String Email, String Password) {
-        this.Title = title;
-        this.userName = userName;
-        this.Email = Email;
-        this.Password = Password;
+    public Profile() {
     }
 
-    Profile() {
+    public Profile(String title, String userName, String email, String password) {
+        this.title = title;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -68,36 +69,31 @@ public class Profile {
         return userName;
     }
 
-    // Setter for userName
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
     public String getTitle() {
-        return this.Title;
+        return this.title;
     }
 
-    // Setter for userName
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    // Getter for email
     public String getEmail() {
-        return this.Email;
+        return this.email;
     }
 
-    // Setter for email
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
 
-    // Getter for password
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
 
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
 }
