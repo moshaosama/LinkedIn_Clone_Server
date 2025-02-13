@@ -17,7 +17,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    private Integer viewrs = 0;
     private String title;
     private String userName;
 
@@ -50,11 +50,12 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String title, String userName, String email, String password) {
+    public Profile(String title, String userName, String email, String password, Integer viewrs) {
         this.title = title;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.viewrs = viewrs;
     }
 
     public Integer getId() {
@@ -63,6 +64,14 @@ public class Profile {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getViewers() {
+        return this.viewrs;
+    }
+
+    public void setViewrs(Integer viewrs) {
+        this.viewrs = viewrs;
     }
 
     public String getUserName() {

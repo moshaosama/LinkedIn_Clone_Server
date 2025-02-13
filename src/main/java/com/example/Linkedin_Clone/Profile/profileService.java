@@ -33,4 +33,10 @@ public class profileService {
     public Profile getProfileByEmail(String email) {
         return this.profileRepository.findByEmail(email).orElse(null);
     }
+
+    public Profile editViewrsProfile(Integer id, Integer newView) {
+        Profile profile = this.profileRepository.findById(id).orElse(null);
+        profile.setViewrs(newView);
+        return this.profileRepository.save(profile);
+    }
 }

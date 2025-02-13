@@ -26,6 +26,7 @@ public class Post {
     @NotNull
     private String Title;
     private String userName;
+    private String Image;
     private Integer Likes = 0;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
@@ -37,10 +38,11 @@ public class Post {
     @JsonBackReference
     private Profile profile;
 
-    Post(String Title, Integer Likes, String Comment, String userName) {
+    Post(String Title, Integer Likes, String Comment, String userName, String Image) {
         this.Title = Title;
         this.Likes = Likes;
         this.userName = userName;
+        this.Image = Image;
     }
 
     Post() {
@@ -64,6 +66,14 @@ public class Post {
 
     public String getuserName() {
         return this.userName;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+
+    public String getImage() {
+        return this.Image;
     }
 
     public void setTitle(String Title) {

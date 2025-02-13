@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,12 @@ public class profileController {
     @GetMapping("/profile/email/{email}")
     public Profile getProfileByEmail(@PathVariable String email) {
         return this.profileService.getProfileByEmail(email);
+    }
+
+    @CrossOrigin("*")
+    @PutMapping("/editViewers/{id}/{newViewer}")
+    public Profile editViewers(@PathVariable Integer id, @PathVariable Integer newViewer) {
+        return this.profileService.editViewrsProfile(id, newViewer);
     }
 
 }
